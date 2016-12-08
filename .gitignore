@@ -4,3 +4,7 @@
 *.iml
 
 *.lock
+
+test.php
+/composer.lock
+/vendor/*
