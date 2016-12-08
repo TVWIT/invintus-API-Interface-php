@@ -1,5 +1,5 @@
 {
-  "name": "Invintus/InvintusAPI",
+  "name": "invintus/invintus-api",
   "description": "INVINTUS API SDK for PHP - Use Invintus Public Web Services in your PHP project",
   "minimum-stability": "dev",
   "license": "proprietary",
