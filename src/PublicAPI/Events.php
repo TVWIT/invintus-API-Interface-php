@@ -6,12 +6,22 @@
 	 * Time: 10:32 AM
 	 */
 
-	namespace InvintusAPI\PublicAPI;
-	use InvintusAPI\Common\InvintusAPI;
+	namespace Invintus\PublicAPI;
+
+
+	use Invintus\InvintusAPI;
 
 	class Events extends InvintusAPI
 	{
-		public function test(){
-			return "foo";
+
+		public function getBasic()
+		{
+			try {
+				return $this->makeCall("Event/".__FUNCTION__, json_encode($this->params));
+			}
+			catch (\Exception $e) {
+					return $e->getMessage();
+			}
+
 		}
 	}
