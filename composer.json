@@ -14,9 +14,9 @@
   },
   "autoload": {
     "psr-4" : {
-      "Invintus\\PublicAPI" : "src/PublicAPI",
-      "Invintus\\CrudAPI" : "src/CrudAPI",
-      "Invintus" : "src"
+      "Invintus\\PublicAPI\\" : "src/PublicAPI",
+      "Invintus\\CrudAPI\\" : "src/CrudAPI",
+      "Invintus\\" : "src"
     }
   }
 }
