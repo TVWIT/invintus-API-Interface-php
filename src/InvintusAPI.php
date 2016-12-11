@@ -198,7 +198,7 @@
 			$headerSent = curl_getinfo($ch, CURLINFO_HEADER_OUT); // request headers
 			//return $headerSent;
 			if (!$resp) {
-				trigger_error(json_encode(curl_error($ch)), E_USER_ERROR);
+				return (object)array("error"=>curl_error($ch));
 			}
 			curl_close($ch);
 			//return $headerSent;
@@ -206,8 +206,6 @@
 			$respArray = json_decode($resp);
 
 			if ($respArray->errors->hasError) {
-				echo $headerSent;
-
 				return $respArray->errors;
 			}
 			if (is_null($respArray->data)) {
