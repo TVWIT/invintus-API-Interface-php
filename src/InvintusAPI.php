@@ -198,7 +198,7 @@
 			$headerSent = curl_getinfo($ch, CURLINFO_HEADER_OUT); // request headers
 			//return $headerSent;
 			if (!$resp) {
-				return (object)array("error"=>curl_error($ch));
+				return (object) array("hasError" => true, 'message' => curl_error($ch));
 			}
 			curl_close($ch);
 			//return $headerSent;
