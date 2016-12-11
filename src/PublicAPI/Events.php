@@ -1,9 +1,8 @@
 <?php
 	/**
-	 * Created by PhpStorm.
-	 * User: scottf
-	 * Date: 12/8/16
-	 * Time: 10:32 AM
+	 * API hooks for invintus API version 3.0
+	 * User: Invintus
+	 * View documentation at https://invintus.api-docs.io/v2.5/event
 	 */
 
 	namespace Invintus\PublicAPI;
@@ -11,17 +10,99 @@
 
 	use Invintus\InvintusAPI;
 
-	class Events extends InvintusAPI
+	/**
+	 * Class Event
+	 * @package Invintus\PublicAPI
+	 */
+	class Event extends InvintusAPI
 	{
+		/**
+		 * @var
+		 */
+		public $showStreams;
+		/**
+		 * @var
+		 */
+		protected $customID;
 
+		/**
+		 * @param mixed $customID
+		 * @return $this
+		 */
+		public function setCustomID($customID)
+		{
+			$this->customID = $customID;
+			$this->params['customID'] = $customID;
+			return $this;
+		}
+
+		/**
+		 * @param mixed $showStreams
+		 * @return $this
+		 */
+		public function setShowStreams($showStreams)
+		{
+			$this->showStreams = $showStreams;
+			$this->params['showStreams'] = $showStreams;
+			return $this;
+		}
+
+		/**
+		 * @return mixed|string
+		 * docs https://invintus.api-docs.io/v2.5/event/event-get-basic
+		 */
 		public function getBasic()
 		{
 			try {
-				return $this->makeCall("Event/".__FUNCTION__, json_encode($this->params));
+				return $this->makeCall("Event/" . __FUNCTION__, json_encode($this->params));
 			}
 			catch (\Exception $e) {
-					return $e->getMessage();
+				return $e->getMessage();
 			}
+		}
 
+		/**
+		 * @return mixed|string
+		 * dosc https://invintus.api-docs.io/v2.5/event/event-get-detailed
+		 */
+		public function getDetailed()
+		{
+			try {
+				$this->params['showMediaAssets']  = true;
+				$this->params['showMediaDetails'] = true;
+				$this->params['getLive']          = true;
+				return $this->makeCall("Event/" . __FUNCTION__, json_encode($this->params));
+			}
+			catch (\Exception $e) {
+				return $e->getMessage();
+			}
+		}
+
+		/**
+		 * @return mixed|string
+		 * docs https://invintus.api-docs.io/v2.5/event/event-get-status
+		 */
+		public function getStatus()
+		{
+			try {
+				return $this->makeCall("Event/" . __FUNCTION__, json_encode($this->params));
+			}
+			catch (\Exception $e) {
+				return $e->getMessage();
+			}
+		}
+
+		/**
+		 * @return mixed|string
+		 * docs https://invintus.api-docs.io/v2.5/event/event-streaming-uri-s
+		 */
+		public function getStreamLinks()
+		{
+			try {
+				return $this->makeCall("Event/" . __FUNCTION__, json_encode($this->params));
+			}
+			catch (\Exception $e) {
+				return $e->getMessage();
+			}
 		}
 	}

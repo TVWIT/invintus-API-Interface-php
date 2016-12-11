@@ -2,70 +2,204 @@
 	/**
 	 * API hooks for invintus API version 3.0
 	 * User: Invintus
-	 * Date: 12/8/16
-	 * Time: 9:35 AM
+	 * View documentation at https://invintus.api-docs.io/v2.5
 	 */
 
 	namespace Invintus;
+	/**
+	 * Class InvintusAPI
+	 * @package Invintus
+	 */
 	class InvintusAPI
 	{
-		public $payloadAuth;
-		public $pubBaseURI = "https://api.v3.invintusmedia.com/v2/";
-		public $guzClient;
-		public $params;
-
 		/**
-		 * @param $auth
+		 * @var
 		 */
-		public function setAuth($auth)
-		{
-			$this->payloadAuth = $auth;
-		}
+		protected $payloadAuth;
 		/**
-		 * @return mixed
+		 * @var string
 		 */
-		public function getParams()
-		{
-			return $this->params;
-		}
-		public function setParams($params){
-			$this->params = $params;
-		}
-
+		protected $pubBaseURI = "https://api.v3.invintusmedia.com/v2/";
+		/**
+		 * @var array
+		 */
+		protected $params;
+		/**
+		 * @var
+		 */
+		protected $clientID;
+		/**
+		 * @var
+		 */
+		protected $api_key;
+		/**
+		 * @var
+		 */
+		protected $vendor;
+		/**
+		 * @var
+		 */
+		protected $eventID;
 
 		/**
 		 * InvintusAPI constructor.
 		 * @param string $api_key
 		 * @param array $param_array
+		 * @param string $vendor
 		 */
-		public function __construct($api_key, array $param_array)
+		public function __construct($api_key = null, array $param_array = array(), $vendor = null)
 		{
-			$this->payloadAuth = $api_key;
-			$this->params = $param_array;
+			if (!is_null($vendor)) {
+				$this->payloadAuth['vendor'] = $vendor;
+			}
+			if (!is_null($api_key)) {
+				$this->payloadAuth['api_key'] = $api_key;
+			}
+			//set json params as array
+			if (!empty($param_array)) {
+				$this->params = $param_array;
+			}
+
 
 		}
-		function makeCall($endPoint, $data){
+
+		/**
+		 * @param mixed $api_key
+		 * @return $this
+		 */
+		public function setApiKey($api_key)
+		{
+			$this->payloadAuth['api_key'] = $api_key;
+
+			return $this;
+		}
+
+		/**
+		 * @param mixed $vendor
+		 * @return $this
+		 */
+		public function setVendor($vendor)
+		{
+			$this->payloadAuth['vendor'] = $vendor;
+
+			return $this;
+		}
+
+		/**
+		 * @return mixed
+		 */
+		protected function getClientID()
+		{
+			return $this->clientID;
+		}
+
+		/**
+		 * @param mixed $clientID
+		 * @return $this
+		 */
+		public function setClientID($clientID)
+		{
+			$this->clientID           = $clientID;
+			$this->params['clientID'] = $clientID;
+
+			return $this;
+		}
+
+		/**
+		 * @return mixed
+		 */
+		protected function getEventID()
+		{
+			return $this->eventID;
+		}
+
+		/**
+		 * @param mixed $eventID
+		 * @return $this
+		 */
+		public function setEventID($eventID)
+		{
+			$this->params['eventID'] = $eventID;
+
+			return $this;
+		}
+
+		/**
+		 * @param $auth
+		 */
+		protected function setAuth($auth)
+		{
+			$this->payloadAuth = $auth;
+		}
+
+		/**
+		 * @return mixed
+		 */
+		protected function getParams()
+		{
+			return $this->params;
+		}
+
+		/**
+		 * @param $params
+		 * @return $this
+		 */
+		public function setParams($params)
+		{
+			$this->params = $params;
+
+			return $this;
+		}
+
+		public function showCallParamsJson(){
+			return json_encode($this->params);
+		}
+
+		/**
+		 * @param $endPoint
+		 * @param $data
+		 * @return mixed
+		 */
+		protected function makeCall($endPoint, $data)
+		{
+			//echo $data; exit;
 			$ch = curl_init();
+			//echo var_dump(isset($this->payloadAuth['vendor']));exit;
+			// isset($this->payloadAuth['vendor'])?$this->payloadAuth['vendor']:$this->payloadAuth['api_key']
+			$auth = isset($this->payloadAuth['vendor']) ? $this->payloadAuth['vendor'] : $this->payloadAuth['api_key'];
+			$vend = isset($this->payloadAuth['vendor']) ? 'Wsc-api-key: ' . $this->payloadAuth['api_key'] : '';
 			curl_setopt($ch, CURLOPT_HTTPHEADER, [
-							   "Content-Type: application/json",
-							   //"Authorization: console",
-							   "wsc-api-key: ". $this->payloadAuth,
+							   'Content-Type: application/json',
+							   'Authorization: ' . $auth,
+							   $vend,
+							   'Content-Length: ' . strlen($data),
 						   ]
 			);
 			curl_setopt($ch, CURLOPT_URL, $this->pubBaseURI . $endPoint);
+			curl_setopt($ch, CURLOPT_TIMEOUT, 5);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-			$resp = curl_exec($ch);
+			curl_setopt($ch, CURLINFO_HEADER_OUT, true); // enable tracking
+			$resp       = curl_exec($ch);
+			$headerSent = curl_getinfo($ch, CURLINFO_HEADER_OUT); // request headers
+			//return $headerSent;
 			if (!$resp) {
 				trigger_error(json_encode(curl_error($ch)), E_USER_ERROR);
 			}
 			curl_close($ch);
+			//return $headerSent;
 			//check for errors from api or core
-			$respCheck = json_decode($resp);
+			$respArray = json_decode($resp);
 
-			if ($respCheck->errors->hasError){
-				//return $this->e->error($respCheck->errors->message, 400);
+			if ($respArray->errors->hasError) {
+				echo $headerSent;
+
+				return $respArray->errors;
 			}
-			return $resp;
+			if (is_null($respArray->data)) {
+				return $respArray->meta;
+			}
+
+			return (object)array_merge_recursive((array)$respArray->data, (array)$respArray->meta);
 		}
 	}
