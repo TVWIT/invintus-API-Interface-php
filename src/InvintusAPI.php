@@ -176,7 +176,7 @@
 						   ]
 			);
 			curl_setopt($ch, CURLOPT_URL, $this->pubBaseURI . $endPoint);
-			curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+			curl_setopt($ch, CURLOPT_TIMEOUT, 10);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 			curl_setopt($ch, CURLINFO_HEADER_OUT, true); // enable tracking
