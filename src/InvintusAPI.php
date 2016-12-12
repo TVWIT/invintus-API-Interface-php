@@ -211,7 +211,6 @@
 			if (is_null($respArray->data)) {
 				return $respArray->meta;
 			}
-
-			return (object)array_merge_recursive((array)$respArray->data, (array)$respArray->meta);
+			return $respArray;
 		}
 	}
