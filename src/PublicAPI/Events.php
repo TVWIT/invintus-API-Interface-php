@@ -54,7 +54,7 @@
 		public function getBasic()
 		{
 			try {
-				return $this->makeCall("Event/" . __FUNCTION__, json_encode($this->params));
+				return $this->makeCall($this->pubBaseURI, "Event/" . __FUNCTION__, json_encode($this->params));
 			}
 			catch (\Exception $e) {
 				return $e->getMessage();
@@ -62,7 +62,7 @@
 		}
 
 		/**
-		 * @return mixed|string
+		 * @return object|string
 		 * dosc https://invintus.api-docs.io/v2.5/event/event-get-detailed
 		 */
 		public function getDetailed()
@@ -71,7 +71,7 @@
 				$this->params['showMediaAssets']  = true;
 				$this->params['showMediaDetails'] = true;
 				$this->params['getLive']          = true;
-				return $this->makeCall("Event/" . __FUNCTION__, json_encode($this->params));
+				return $this->makeCall($this->pubBaseURI, "Event/" . __FUNCTION__, json_encode($this->params));
 			}
 			catch (\Exception $e) {
 				return $e->getMessage();
@@ -79,13 +79,13 @@
 		}
 
 		/**
-		 * @return mixed|string
+		 * @return object|string
 		 * docs https://invintus.api-docs.io/v2.5/event/event-get-status
 		 */
 		public function getStatus()
 		{
 			try {
-				return $this->makeCall("Event/" . __FUNCTION__, json_encode($this->params));
+				return $this->makeCall($this->pubBaseURI, "Event/" . __FUNCTION__, json_encode($this->params));
 			}
 			catch (\Exception $e) {
 				return $e->getMessage();
@@ -93,13 +93,13 @@
 		}
 
 		/**
-		 * @return mixed|string
+		 * @return object|string
 		 * docs https://invintus.api-docs.io/v2.5/event/event-streaming-uri-s
 		 */
 		public function getStreamLinks()
 		{
 			try {
-				return $this->makeCall("Event/" . __FUNCTION__, json_encode($this->params));
+				return $this->makeCall($this->pubBaseURI, "Event/" . __FUNCTION__, json_encode($this->params));
 			}
 			catch (\Exception $e) {
 				return $e->getMessage();

@@ -35,6 +35,10 @@
 		 */
 		protected $pubBaseURI = "https://api.v3.invintusmedia.com/v2/";
 		/**
+		 * @var string
+		 */
+		protected $crudBaseURI = "https://crud.v3.invintusmedia.com/";
+		/**
 		 * @var array
 		 */
 		protected $params;
@@ -170,11 +174,12 @@
 		}
 
 		/**
+		 * @param $endpointBase
 		 * @param $endPoint
 		 * @param $data
-		 * @return mixed
+		 * @return object
 		 */
-		protected function makeCall($endPoint, $data)
+		protected function makeCall($endpointBase, $endPoint, $data)
 		{
 			//echo $data; exit;
 			$ch = curl_init();
@@ -189,7 +194,7 @@
 							   'Content-Length: ' . strlen($data),
 						   ]
 			);
-			curl_setopt($ch, CURLOPT_URL, $this->pubBaseURI . $endPoint);
+			curl_setopt($ch, CURLOPT_URL, $endpointBase . $endPoint);
 			curl_setopt($ch, CURLOPT_TIMEOUT, $this->callTimeout);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $data);

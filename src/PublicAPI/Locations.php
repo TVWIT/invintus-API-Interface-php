@@ -32,12 +32,12 @@
 		}
 
 		/**
-		 * @return mixed|string
+		 * @return object|string
 		 * docs https://invintus.api-docs.io/v2.5/locations/locations-get
 		 */
 		public function getLocations(){
 			try {
-				return $this->makeCall("Locations/" . __FUNCTION__, json_encode($this->params));
+				return $this->makeCall($this->pubBaseURI, "Locations/" . __FUNCTION__, json_encode($this->params));
 			}
 			catch (\Exception $e) {
 				return $e->getMessage();
@@ -45,12 +45,12 @@
 		}
 
 		/**
-		 * @return mixed|string
+		 * @return object|string
 		 * docs https://invintus.api-docs.io/v2.5/locations/locations-by-id
 		 */
 		public function getLocationsByID(){
 			try {
-				return $this->makeCall("Locations/" . __FUNCTION__, json_encode($this->params));
+				return $this->makeCall($this->pubBaseURI, "Locations/" . __FUNCTION__, json_encode($this->params));
 			}
 			catch (\Exception $e) {
 				return $e->getMessage();

@@ -32,12 +32,12 @@
 		}
 
 		/**
-		 * @return mixed|string
+		 * @return object|string
 		 * docs https://invintus.api-docs.io/v2.5/keywords/keywords-get
 		 */
 		public function getKeywords(){
 			try {
-				return $this->makeCall("Keywords/" . __FUNCTION__, json_encode($this->params));
+				return $this->makeCall($this->pubBaseURI, "Keywords/" . __FUNCTION__, json_encode($this->params));
 			}
 			catch (\Exception $e) {
 				return $e->getMessage();
@@ -45,12 +45,12 @@
 		}
 
 		/**
-		 * @return mixed|string
+		 * @return object|string
 		 * docs https://invintus.api-docs.io/v2.5/keywords/keywords-get-by-id
 		 */
 		public function getKeywordsByID(){
 			try {
-				return $this->makeCall("Keywords/" . __FUNCTION__, json_encode($this->params));
+				return $this->makeCall($this->pubBaseURI, "Keywords/" . __FUNCTION__, json_encode($this->params));
 			}
 			catch (\Exception $e) {
 				return $e->getMessage();

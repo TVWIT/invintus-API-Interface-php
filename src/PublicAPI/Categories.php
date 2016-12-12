@@ -81,13 +81,13 @@
 		}
 
 		/**
-		 * @return mixed|string
+		 * @return object|string
 		 * docs https://invintus.api-docs.io/v2.5/categories/categories-get
 		 */
 		public function getCategories()
 		{
 			try {
-				return $this->makeCall("Categories/" . __FUNCTION__, json_encode($this->params));
+				return $this->makeCall($this->pubBaseURI, "Categories/" . __FUNCTION__, json_encode($this->params));
 			}
 			catch (\Exception $e) {
 				return $e->getMessage();
@@ -95,13 +95,13 @@
 		}
 
 		/**
-		 * @return mixed|string
+		 * @return object|string
 		 * docs https://invintus.api-docs.io/v2.5/categories/categories-by-description
 		 */
 		public function getCategoryByDescription()
 		{
 			try {
-				return $this->makeCall("Categories/" . __FUNCTION__, json_encode($this->params));
+				return $this->makeCall($this->pubBaseURI, "Categories/" . __FUNCTION__, json_encode($this->params));
 			}
 			catch (\Exception $e) {
 				return $e->getMessage();
@@ -109,13 +109,13 @@
 		}
 
 		/**
-		 * @return mixed|string
+		 * @return object|string
 		 * docs https://invintus.api-docs.io/v2.5/categories/categories-by-id
 		 */
 		public function getCategoryByID()
 		{
 			try {
-				return $this->makeCall("Categories/" . __FUNCTION__, json_encode($this->params));
+				return $this->makeCall($this->pubBaseURI, "Categories/" . __FUNCTION__, json_encode($this->params));
 			}
 			catch (\Exception $e) {
 				return $e->getMessage();
@@ -123,13 +123,13 @@
 		}
 
 		/**
-		 * @return mixed|string
+		 * @return object|string
 		 * docs https://invintus.api-docs.io/v2.5/categories/categories-by-name
 		 */
 		public function getCategoryByName()
 		{
 			try {
-				return $this->makeCall("Categories/" . __FUNCTION__, json_encode($this->params));
+				return $this->makeCall($this->pubBaseURI, "Categories/" . __FUNCTION__, json_encode($this->params));
 			}
 			catch (\Exception $e) {
 				return $e->getMessage();
@@ -137,13 +137,13 @@
 		}
 
 		/**
-		 * @return mixed|string
+		 * @return object|string
 		 * docs https://invintus.api-docs.io/v2.5/categories/categories-by-parent
 		 */
 		public function getCategoryByParent()
 		{
 			try {
-				return $this->makeCall("Categories/" . __FUNCTION__, json_encode($this->params));
+				return $this->makeCall($this->pubBaseURI, "Categories/" . __FUNCTION__, json_encode($this->params));
 			}
 			catch (\Exception $e) {
 				return $e->getMessage();

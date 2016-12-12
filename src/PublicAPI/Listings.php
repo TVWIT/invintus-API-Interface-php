@@ -348,7 +348,7 @@
 		public function getStatus()
 		{
 			try {
-				return $this->makeCall("Listings/" . __FUNCTION__, json_encode($this->params));
+				return $this->makeCall($this->pubBaseURI, "Listings/" . __FUNCTION__, json_encode($this->params));
 			}
 			catch (\Exception $e) {
 				return $e->getMessage();
@@ -368,13 +368,13 @@
 		}
 
 		/**
-		 * @return mixed|string
+		 * @return object|string
 		 * docs https://invintus.api-docs.io/v2.5/listings/listings-get-basic
 		 */
 		public function getBasic()
 		{
 			try {
-				return $this->makeCall("Listings/" . __FUNCTION__, json_encode($this->params));
+				return $this->makeCall($this->pubBaseURI, "Listings/" . __FUNCTION__, json_encode($this->params));
 			}
 			catch (\Exception $e) {
 				return $e->getMessage();
@@ -382,7 +382,7 @@
 		}
 
 		/**
-		 * @return mixed|string
+		 * @return object|string
 		 * dosc https://invintus.api-docs.io/v2.5/listings/listings-get-detailed
 		 */
 		public function getDetailed()
@@ -391,7 +391,7 @@
 				$this->params['showMediaAssets'] = true;
 				$this->params['showMediaDetails'] = true;
 				$this->params['showEncoder']     = true;
-				return $this->makeCall("Listings/" . __FUNCTION__, json_encode($this->params));
+				return $this->makeCall($this->pubBaseURI, "Listings/" . __FUNCTION__, json_encode($this->params));
 			}
 			catch (\Exception $e) {
 				return $e->getMessage();

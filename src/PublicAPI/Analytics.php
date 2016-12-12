@@ -50,13 +50,13 @@
 		}
 
 		/**
-		 * @return mixed|string
+		 * @return object|string
 		 * docs https://invintus.api-docs.io/v2.5/analytics/analytics-get
 		 */
 		public function getAnalytics()
 		{
 			try {
-				return $this->makeCall("Analytics/" . __FUNCTION__, json_encode($this->params));
+				return $this->makeCall($this->pubBaseURI, "Analytics/" . __FUNCTION__, json_encode($this->params));
 			}
 			catch (\Exception $e) {
 				return $e->getMessage();
@@ -64,13 +64,13 @@
 		}
 
 		/**
-		 * @return mixed|string
+		 * @return object|string
 		 * docs https://invintus.api-docs.io/v2.5/analytics/analytics-most-watched
 		 */
 		public function getMostWatched()
 		{
 			try {
-				return $this->makeCall("Analytics/" . __FUNCTION__, json_encode($this->params));
+				return $this->makeCall($this->pubBaseURI,"Analytics/" . __FUNCTION__, json_encode($this->params));
 			}
 			catch (\Exception $e) {
 				return $e->getMessage();
@@ -78,13 +78,13 @@
 		}
 
 		/**
-		 * @return mixed|string
+		 * @return object|string
 		 * docs https://invintus.api-docs.io/v2.5/analytics/analytics-storage-usage-to-date
 		 */
 		public function getStorageUsage()
 		{
 			try {
-				return $this->makeCall("Analytics/" . __FUNCTION__, json_encode($this->params));
+				return $this->makeCall($this->pubBaseURI,"Analytics/" . __FUNCTION__, json_encode($this->params));
 			}
 			catch (\Exception $e) {
 				return $e->getMessage();
@@ -92,13 +92,13 @@
 		}
 
 		/**
-		 * @return mixed|string
+		 * @return object|string
 		 * docs https://invintus.api-docs.io/v2.5/analytics/analytics-bandwitdh-usage
 		 */
 		public function getBandwidthUsage()
 		{
 			try {
-				return $this->makeCall("Analytics/" . __FUNCTION__, json_encode($this->params));
+				return $this->makeCall($this->pubBaseURI,"Analytics/" . __FUNCTION__, json_encode($this->params));
 			}
 			catch (\Exception $e) {
 				return $e->getMessage();
@@ -106,13 +106,13 @@
 		}
 
 		/**
-		 * @return mixed|string
+		 * @return object|string
 		 * docs https://invintus.api-docs.io/v2.5/analytics/analytics-bandwidth-usage-by-event
 		 */
 		public function getBandwidthUsageByEvent()
 		{
 			try {
-				return $this->makeCall("Analytics/" . __FUNCTION__, json_encode($this->params));
+				return $this->makeCall($this->pubBaseURI,"Analytics/" . __FUNCTION__, json_encode($this->params));
 			}
 			catch (\Exception $e) {
 				return $e->getMessage();
