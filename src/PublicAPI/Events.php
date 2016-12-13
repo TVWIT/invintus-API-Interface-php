@@ -14,7 +14,7 @@
 	 * Class Event
 	 * @package Invintus\PublicAPI
 	 */
-	class Event extends InvintusAPI
+	class Events extends InvintusAPI
 	{
 		/**
 		 * @var
