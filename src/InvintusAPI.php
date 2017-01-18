@@ -3,6 +3,8 @@
 	 * API hooks for invintus API version 3.0
 	 * User: Invintus
 	 * View documentation at https://invintus.api-docs.io/v2.5
+	 * Acceptable use of this software and Invintus Media Inc.'s API service detailed in API documentation
+	 * You must be a active client and be enrolled in an account level that supports API calls to use this service.
 	 */
 
 	namespace Invintus;
@@ -181,10 +183,7 @@
 		 */
 		protected function makeCall($endpointBase, $endPoint, $data)
 		{
-			//echo $data; exit;
 			$ch = curl_init();
-			//echo var_dump(isset($this->payloadAuth['vendor']));exit;
-			// isset($this->payloadAuth['vendor'])?$this->payloadAuth['vendor']:$this->payloadAuth['api_key']
 			$auth = isset($this->payloadAuth['vendor']) ? $this->payloadAuth['vendor'] : $this->payloadAuth['api_key'];
 			$vend = isset($this->payloadAuth['vendor']) ? 'Wsc-api-key: ' . $this->payloadAuth['api_key'] : '';
 			curl_setopt($ch, CURLOPT_HTTPHEADER, [
@@ -201,12 +200,10 @@
 			curl_setopt($ch, CURLINFO_HEADER_OUT, true); // enable tracking
 			$resp       = curl_exec($ch);
 			$headerSent = curl_getinfo($ch, CURLINFO_HEADER_OUT); // request headers
-			//return $headerSent;
 			if (!$resp) {
 				return (object) array("hasError" => true, 'message' => curl_error($ch));
 			}
 			curl_close($ch);
-			//return $headerSent;
 			//check for errors from api or core
 			$respArray = json_decode($resp);
 

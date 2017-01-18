@@ -1,5 +1,9 @@
 # invintus-API-Interface-php
 INVINTUS API SDK for PHP - Use Invintus Web Service API's in your PHP project
+> Acceptable use of this software and Invintus Media Inc.'s API service detailed in the[API documentation](https://invintus.api-docs.io/v2.5) 
+
+To use this service, You must be an Invintus Platform client and be enrolled in an active payed account plan that supports API calls.
+To enroll in a service plan or to try out the Invintus Streaming Platform, contact info@invintus.com
 ### install using composer
 ```angular2html
 {
