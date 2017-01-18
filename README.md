@@ -1,6 +1,13 @@
 # invintus-API-Interface-php
 INVINTUS API SDK for PHP - Use Invintus Web Service API's in your PHP project
-
+### install using composer
+```angular2html
+{
+    "require": {
+	        "invintus/invintus-api":"v1.0"
+    }
+}
+```
 ### usage example 
 > public api
 
@@ -17,3 +24,5 @@ $v3Data  = $v3Call
 $callParams = $v3Call->showCallParamsJson();
 ```
 To view a complete list of API methods, endpoints and their options, please visit [https://invintus.api-docs.io/v2.5](https://invintus.api-docs.io/v2.5)
+
+>CRUD actions are only accessible with a certified partner key. contact support@invintus.com if you are a certified partner and need an access token. 
