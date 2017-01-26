@@ -61,6 +61,14 @@
 		 */
 		protected $eventID;
 
+		public function useDevCrud($uri){
+			$this->crudBaseURI = $uri;
+			return $this;
+		}
+		public function useDevAPi($uri){
+			$this->pubBaseURI = $uri;
+			return $this;
+		}
 		/**
 		 * InvintusAPI constructor.
 		 * @param string $api_key
