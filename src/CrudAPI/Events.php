@@ -85,6 +85,18 @@
 		 */
 		protected $autoStart;
 
+		protected $preroll;
+
+		/**
+		 * @param mixed $preroll
+		 * @return $this
+		 */
+		public function setPreroll($preroll)
+		{
+			$this->preroll = $preroll;
+			return $this;
+		}
+
 		/**
 		 * @param mixed $private
 		 *  @return $this
