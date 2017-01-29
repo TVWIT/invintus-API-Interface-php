@@ -72,6 +72,21 @@
 		protected $customID;
 
 		/**
+		 * @var
+		 */
+		protected $eventStatus;
+
+		/**
+		 * @param mixed $eventStatus
+		 *  @return $this
+		 */
+		public function setEventStatus($eventStatus)
+		{
+			$this->eventStatus = $eventStatus;
+			return $this;
+		}
+
+		/**
 		 * @param string $startDateTime format YYYY-MM-DD hh:mm AM/PM
 		 * @return $this
 		 */
@@ -248,6 +263,19 @@
 		 * docs https://invintus-crud.api-docs.io/v2.5/events/events-update
 		 */
 		public function update()
+		{
+			try {
+				//updates the status individually
+				if (!empty($eventStatus)) $this->setEventStatusStr();
+				//
+				return $this->makeCall($this->crudBaseURI, "events/" . __FUNCTION__, json_encode($this->params));
+			}
+			catch (\Exception $e) {
+				return $e->getMessage();
+			}
+		}
+
+		private function setEventStatusStr()
 		{
 			try {
 				return $this->makeCall($this->crudBaseURI, "events/" . __FUNCTION__, json_encode($this->params));
