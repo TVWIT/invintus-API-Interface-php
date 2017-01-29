@@ -77,6 +77,35 @@
 		protected $eventStatus;
 
 		/**
+		 * @var
+		 */
+		protected $private;
+		/**
+		 * @var
+		 */
+		protected $autoStart;
+
+		/**
+		 * @param mixed $private
+		 *  @return $this
+		 */
+		public function setPrivate($private)
+		{
+			$this->private = $private;
+			return $this;
+		}
+
+		/**
+		 * @param mixed $autoStart
+		 *  @return $this
+		 */
+		public function setAutoStart($autoStart)
+		{
+			$this->autoStart = $autoStart;
+			return $this;
+		}
+
+		/**
 		 * @param mixed $eventStatus
 		 *  @return $this
 		 */
