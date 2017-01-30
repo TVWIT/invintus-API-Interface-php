@@ -310,30 +310,7 @@
 		public function update()
 		{
 			try {
-				//updates the status individually
-				if (!empty($eventStatus)) {
-					$this->setEventStatusStr();
-					//remove status from the opts before it's sent to update
-					$this->setEventStatus(null);
-				}
-				//
 				return $this->makeCall($this->crudBaseURI, "events/" . __FUNCTION__, json_encode($this->params));
-			}
-			catch (\Exception $e) {
-				return $e->getMessage();
-			}
-		}
-
-		private function setEventStatusStr()
-		{
-
-			try {
-				return $this->makeCall($this->crudBaseURI, "events/" . __FUNCTION__, json_encode(array(
-																									 "clientID"=>$this->clientID,
-																									 "eventID"=>$this->eventID,
-																									 "eventStatus"=>$this->eventStatus
-																								 )));
-
 			}
 			catch (\Exception $e) {
 				return $e->getMessage();
