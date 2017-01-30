@@ -94,6 +94,7 @@
 		public function setPreroll($preroll)
 		{
 			$this->preroll = $preroll;
+			$this->params['preroll'] = $preroll;
 			return $this;
 		}
 
@@ -104,6 +105,7 @@
 		public function setPrivate($private)
 		{
 			$this->private = $private;
+			$this->params['private'] = $private;
 			return $this;
 		}
 
@@ -114,6 +116,7 @@
 		public function setAutoStart($autoStart)
 		{
 			$this->autoStart = $autoStart;
+			$this->params['autoStart'] = $autoStart;
 			return $this;
 		}
 
@@ -124,6 +127,7 @@
 		public function setEventStatus($eventStatus)
 		{
 			$this->eventStatus = $eventStatus;
+			$this->params['eventStatus'] = $eventStatus;
 			return $this;
 		}
 
