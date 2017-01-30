@@ -322,8 +322,13 @@
 
 		private function setEventStatusStr()
 		{
+
 			try {
-				return $this->makeCall($this->crudBaseURI, "events/" . __FUNCTION__, json_encode($this->params));
+				return $this->makeCall($this->crudBaseURI, "events/" . __FUNCTION__, json_encode(array(
+																									 "clientID"=>$this->clientID,
+																									 "eventID"=>$this->eventID,
+																									 "eventStatus"=>$this->eventStatus
+																								 )));
 			}
 			catch (\Exception $e) {
 				return $e->getMessage();
