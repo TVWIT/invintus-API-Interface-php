@@ -69,6 +69,9 @@
 			$this->pubBaseURI = $uri;
 			return $this;
 		}
+		public function getPubBaseURI(){
+			return $this->pubBaseURI;
+		}
 		/**
 		 * InvintusAPI constructor.
 		 * @param string $api_key

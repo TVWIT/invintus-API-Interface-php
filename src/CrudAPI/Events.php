@@ -87,6 +87,21 @@
 
 		protected $preroll;
 
+		protected $forceCreate;
+		/**
+		 * @param boolean $forceCreate
+		 * @return $this
+		 */
+		public function forceCreate($forceCreate = false)
+		{
+			if ($forceCreate){
+				$this->forceCreate = true;
+				$this->params['forceCreate'] = true;
+			}
+			return $this;
+		}
+
+
 		/**
 		 * @param mixed $preroll
 		 * @return $this
