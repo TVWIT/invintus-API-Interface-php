@@ -383,7 +383,7 @@
 
 		/**
 		 * @return object|string
-		 * dosc https://invintus.api-docs.io/v2.5/listings/listings-get-detailed
+		 * docs https://invintus.api-docs.io/v2.5/listings/listings-get-detailed
 		 */
 		public function getDetailed()
 		{
@@ -397,5 +397,13 @@
 				return $e->getMessage();
 			}
 		}
+        /**
+         * @return object|string
+         * abstracted from a legacy API v1 call: evenGetStatus
+         */
+		public function getStatus48hrs()
+        {
+            return $this->makeCall($this->pubBaseURI, "Listings/" . __FUNCTION__, json_encode($this->params));
+        }
 
 	}
