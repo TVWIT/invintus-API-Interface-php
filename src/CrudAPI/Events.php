@@ -251,7 +251,7 @@
 		public function setLocation($location)
 		{
 			$this->location           = $location;
-			$this->params['location'] = $location;
+			$this->params['locationID'] = $location;
 
 			return $this;
 		}
