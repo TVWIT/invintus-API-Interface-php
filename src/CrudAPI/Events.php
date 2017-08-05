@@ -239,7 +239,7 @@
 		public function setLiveCaptions($liveCaptions)
 		{
 			$this->liveCaptions            = $liveCaptions;
-			$this->params['startDateTime'] = $startDateTime;
+			$this->params['startDateTime'] = $this->startDateTime;
 
 			return $this;
 		}
