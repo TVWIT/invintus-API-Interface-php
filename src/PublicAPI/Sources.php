@@ -34,6 +34,19 @@
             }
             return $this->encoderID;
         }
+        /**
+         * @return mixed
+         */
+        public function getSources()
+        {
+            try {
+                return $this->makeCall($this->pubBaseURI, "Console/getEncoders", json_encode($this->params));
+            }
+            catch (\Exception $e) {
+                return $e->getMessage();
+            }
+            return $this->encoderID;
+        }
 
         /**
          * @param mixed $encoderID
