@@ -420,8 +420,12 @@
 		public function getDetailed()
 		{
 			try {
-				$this->params['showMediaAssets'] = true;
-				$this->params['showMediaDetails'] = true;
+			    if (!isset($this->showMediaAssets)){
+                    $this->params['showMediaAssets'] = true;
+                }
+                if (!isset($this->showMediaAssets)){
+                    $this->params['showMediaDetails'] = true;
+                }
 				$this->params['showEncoder']     = true;
 				return $this->makeCall($this->pubBaseURI, "Listings/" . __FUNCTION__, json_encode($this->params));
 			}
