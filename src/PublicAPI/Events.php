@@ -24,6 +24,38 @@
 		 * @var
 		 */
 		protected $customID;
+        /**
+         * @var
+         */
+        protected $showRuntime;
+        /**
+         * @var
+         */
+        protected $isConsole;
+
+        /**
+         * @param boolean $showRuntime
+         *  @return $this
+         */
+        public function setShowRuntime($showRuntime)
+        {
+            $this->showRuntime = $showRuntime;
+            $this->params['showRuntime'] = $showRuntime;
+
+            return $this;
+        }
+
+        /**
+         * @param boolean $isConsole
+         * @return $this
+         */
+        public function setIsConsole($isConsole)
+        {
+            $this->isConsole = $isConsole;
+            $this->params['isConsole'] = $isConsole;
+
+            return $this;
+        }
 
 		/**
 		 * @param mixed $customID
