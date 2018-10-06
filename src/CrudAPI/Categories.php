@@ -66,7 +66,7 @@
 		public function setCategoryDescription($categoryDescription)
 		{
 			$this->categoryDescription = $categoryDescription;
-			$this->params['customID'] = $customID;
+			$this->params['categoryDescription'] = $categoryDescription;
 
 			return $this;
 		}
@@ -78,7 +78,7 @@
 		public function setChildOf($childOf)
 		{
 			$this->childOf = $childOf;
-			$this->params['customID'] = $customID;
+			$this->params['childOf'] = $childOf;
 
 			return $this;
 		}
